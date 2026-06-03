@@ -83,19 +83,40 @@ graph TD
 - PostgreSQL
 - Maven 3.9+
 
-## Features
-- Customer Registration
-- KYC Workflow
-- Account Management
-- Fund Transfer
-- Transaction History
-- Beneficiary Management
-- Loan Processing
-- Notification Service
-- Audit Logging
-- Fraud Detection
-- JWT Authentication
-- Role Based Access Control
+## Key Features
+
+🔐 **Authentication & Authorization**
+- JWT-based authentication
+- Role-based access control
+
+👤 **Customer Management**
+- Customer onboarding
+- KYC workflow
+- Profile management
+
+🏦 **Account Management**
+- Account creation
+- Balance inquiry
+- Account lifecycle management
+
+💸 **Fund Transfers**
+- Internal account transfers
+- Transaction history
+- Transfer validation
+
+📧 **Notifications**
+- Email notifications
+- SMS alerts
+- Event-driven messaging
+
+🛡️ **Fraud Detection**
+- Transaction monitoring
+- Risk flag generation
+
+📊 **Audit & Compliance**
+- Audit trail
+- Event logging
+- Activity tracking
 
 ## Documentation
 
