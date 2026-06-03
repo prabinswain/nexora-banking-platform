@@ -8,14 +8,15 @@ The primary goal of this project is to showcase enterprise-grade backend enginee
 
 
 ## Architecture
-=================
+
+[Insert Architecture Diagram]
 
 Client
     |
 API Gateway
     |
 ------------------------------------------------
-|       |       |       |       |             | 
+|       |       |       |       |             |
 Auth  Customer Account Transaction Payment Loan
                         |
                       Kafka
@@ -26,23 +27,21 @@ Notification      Audit          Fraud
 
 
 ## Microservices
-====================
 
-| Service |                   Responsibility |
-|----------|---------------------------------|
-| auth-service |              Authentication & Authorization |
-| customer-service |          Customer Management |
-| account-service |           Account Operations |
-| transaction-service |       Fund Transfers |
-| payment-service |           Payment Processing |
-| loan-service |              Loan Management |
-| notification-service |      Email/SMS Notifications |
-| audit-service |             Audit Logging |
-| fraud-service |             Fraud Monitoring |
+| Service | Responsibility |
+|----------|---------------|
+| auth-service | Authentication & Authorization |
+| customer-service | Customer Management |
+| account-service | Account Operations |
+| transaction-service | Fund Transfers |
+| payment-service | Payment Processing |
+| loan-service | Loan Management |
+| notification-service | Email/SMS Notifications |
+| audit-service | Audit Logging |
+| fraud-service | Fraud Monitoring |
 
 
 ## Technology Stack
-===================
 
 ### Backend
 - Java 21
@@ -70,7 +69,6 @@ Notification      Audit          Fraud
 
 
 ## Prerequisites
-=================
 - Java 21+
 - Docker
 - Docker Compose
@@ -79,7 +77,6 @@ Notification      Audit          Fraud
 - Maven 3.9+
 
 ## Features
-==================
 - Customer Registration
 - KYC Workflow
 - Account Management
@@ -94,18 +91,17 @@ Notification      Audit          Fraud
 - Role Based Access Control
 
 ## Documentation
-==================
-| Topic |                   Link |
-|---------|------|
-| System Architecture |     docs/architecture |
-| API Documentation |       docs/api |
-| Deployment Guide |        docs/deployment |
-| Security Guide | d        ocs/security |
-| Monitoring Guide |        docs/monitoring |
 
+| Topic | Link |
+|---------|------|
+| System Architecture | docs/architecture |
+| API Documentation | docs/api |
+| Deployment Guide | docs/deployment |
+| Security Guide | docs/security |
+| Monitoring Guide | docs/monitoring |
 
 ## Screenshots
-================
+
 - Architecture Diagram
 - Swagger UI
 - Kafka Event Flow
@@ -115,7 +111,7 @@ Notification      Audit          Fraud
 
 
 ## Roadmap
-=============
+
 - [x] Authentication Service
 - [x] Customer Service
 - [x] Account Service
@@ -126,7 +122,7 @@ Notification      Audit          Fraud
 
 
 ## Engineering Highlights
-=========================
+
 - Distributed Microservices Architecture
 - Event-Driven Communication using Kafka
 - JWT Authentication & RBAC
