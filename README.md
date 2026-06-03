@@ -173,7 +173,7 @@ nexora-banking-platform
 - [ ] Kubernetes Deployment
 - [ ] CI/CD Pipeline
 
-```markdown
+``` text
 ## API Documentation
 
 | Service | Swagger URL |
