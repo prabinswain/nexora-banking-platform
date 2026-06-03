@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: accounts
+  main:
+    banner-mode: off
+
+  #importing import from configserver
+  config:
+    import: "optional:configserver:http://localhost:8070"
+  # activating profiles
+  profiles:
+    active: prod
+
+server:
+  port: 8080
+
