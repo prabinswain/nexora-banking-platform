@@ -1,5 +1,12 @@
 # Nexora Banking Platform
 
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-green)
+![Kafka](https://img.shields.io/badge/Kafka-Event%20Driven-black)
+![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestrated-326CE5)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
 Nexora Banking Platform is a cloud-native banking ecosystem built using Java, Spring Boot, Spring Cloud, Kafka, MySQL, Redis, Docker, and Kubernetes.
 
 The platform is designed using microservices architecture and demonstrates real-world banking capabilities such as customer onboarding, account management, fund transfers, payment processing, loan management, notifications, fraud detection, and audit tracking.
@@ -47,7 +54,25 @@ graph TD
     Kafka --> Audit
     Kafka --> Fraud
 ```
+## Repository Structure
 
+```text
+nexora-banking-platform
+├── auth-service
+├── customer-service
+├── account-service
+├── transaction-service
+├── payment-service
+├── loan-service
+├── notification-service
+├── audit-service
+├── fraud-service
+├── api-gateway
+├── config-server
+├── discovery-server
+├── docs
+└── infrastructure
+```
 ## Technology Stack
 
 ### Backend
@@ -148,6 +173,39 @@ graph TD
 - [ ] Kubernetes Deployment
 - [ ] CI/CD Pipeline
 
+```markdown
+## API Documentation
+
+| Service | Swagger URL |
+|----------|-------------|
+| Auth Service | /swagger-ui |
+| Customer Service | /swagger-ui |
+| Account Service | /swagger-ui |
+```
+## Security
+
+- JWT Authentication
+- Role-Based Access Control
+- Password Encryption using BCrypt
+- API Gateway Security
+- Input Validation
+- Secure Configuration Management
+
+## Monitoring & Observability
+
+- Prometheus Metrics
+- Grafana Dashboards
+- Centralized Logging
+- Distributed Tracing
+- Health Checks
+
+## CI/CD Pipeline
+
+- Build Verification
+- Unit Testing
+- Code Quality Checks
+- Docker Image Build
+- Kubernetes Deployment
 
 ## Engineering Highlights
 
