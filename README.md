@@ -9,37 +9,44 @@ The primary goal of this project is to showcase enterprise-grade backend enginee
 
 ## Architecture
 
-[Insert Architecture Diagram]
+```mermaid
+graph TD
 
-Client
-    |
-API Gateway
-    |
-------------------------------------------------
-|       |       |       |       |             |
-Auth  Customer Account Transaction Payment Loan
-                        |
-                      Kafka
-                        |
-      ----------------------------------
-      |               |                |
-Notification      Audit          Fraud
+    Client[Client Applications]
 
+    Gateway[API Gateway]
 
-## Microservices
+    Auth[Auth Service]
+    Customer[Customer Service]
+    Account[Account Service]
+    Transaction[Transaction Service]
+    Payment[Payment Service]
+    Loan[Loan Service]
 
-| Service | Responsibility |
-|----------|---------------|
-| auth-service | Authentication & Authorization |
-| customer-service | Customer Management |
-| account-service | Account Operations |
-| transaction-service | Fund Transfers |
-| payment-service | Payment Processing |
-| loan-service | Loan Management |
-| notification-service | Email/SMS Notifications |
-| audit-service | Audit Logging |
-| fraud-service | Fraud Monitoring |
+    Kafka[Kafka Event Bus]
 
+    Notification[Notification Service]
+    Audit[Audit Service]
+    Fraud[Fraud Detection Service]
+
+    Client --> Gateway
+
+    Gateway --> Auth
+    Gateway --> Customer
+    Gateway --> Account
+    Gateway --> Transaction
+    Gateway --> Payment
+    Gateway --> Loan
+
+    Account --> Kafka
+    Transaction --> Kafka
+    Payment --> Kafka
+    Loan --> Kafka
+
+    Kafka --> Notification
+    Kafka --> Audit
+    Kafka --> Fraud
+```
 
 ## Technology Stack
 
