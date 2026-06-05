@@ -17,10 +17,11 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
-
+  healthcheck:
+    enabled: true
 #port
 server:
-  port: 8071
+  port: 8761
 
 #logging level
 logging:
