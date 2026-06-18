@@ -37,7 +37,7 @@ spring:
     import: "optional:configserver:http://localhost:8070"
   # activating profiles
   profiles:
-    active: prod
+    active: default
 
 # Eureka server configuration
 eureka:
