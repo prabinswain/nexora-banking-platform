@@ -1,5 +1,9 @@
 package com.nexora.accounts.service;
 
+import com.nexora.accounts.dto.request.OpenAccountRequest;
+import com.nexora.accounts.dto.response.OpenAccountResponse;
+import jakarta.validation.Valid;
+
 /**
  * ═══════════════════════════════════════════════════════════════════════
  * AccountService — Core banking account management
@@ -44,5 +48,5 @@ package com.nexora.accounts.service;
 
 public interface AccountService {
 
-
+    OpenAccountResponse openAccount(@Valid OpenAccountRequest request);
 }
