@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: discovery-server
+  main:
+    banner-mode: off
+
+  # config
+  config:
+    import: "optional:configserver:http://localhost:8070"
+
+# Eureka configurations
+eureka:
+  instance:
+    hostname: 192.168.29.95
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    prefer-ip-address: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+  healthcheck:
+    enabled: true
+#port
+server:
+  port: 8761
+
+#logging level
+logging:
+  level:
+    root: INFO
