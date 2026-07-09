@@ -6,6 +6,7 @@ import com.nexora.accounts.dto.response.OpenAccountResponse;
 import com.nexora.accounts.service.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.nexora.common.dto.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +22,10 @@ public class AccountsController {
     private final AccountService accountService;
 
     @PostMapping // ("/create")
-   public ResponseEntity<OpenAccountResponse> openAccount(@RequestBody @Valid OpenAccountRequest request){
+    public ResponseEntity<ApiResponse<OpenAccountResponse>> openAccount(@RequestBody @Valid OpenAccountRequest request) {
         OpenAccountResponse data = accountService.openAccount(request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(AccountResponse.created(data, "Account opened successfully"));
+                .body(ApiResponse.created(data, "Account opened successfully"));
     }
 }

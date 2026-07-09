@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * ═══════════════════════════════════════════════════════════════════════
  * AccountService — Core banking account management
  * ═══════════════════════════════════════════════════════════════════════
- *
+ * <p>
  * WHAT THIS SERVICE DOES:
  * ┌─────────────────────────────────────────────────────────────────┐
  * │  1. openAccount()        → Create SAVINGS/CURRENT/FD/RD/SALARY │
@@ -31,7 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
  * │  9. closeAccount()       → Initiate account closure             │
  * │ 10. getMiniStatement()   → Last 5 transactions summary          │
  * └─────────────────────────────────────────────────────────────────┘
- *
+ * <p>
  * HOW BALANCE WORKS:
  * ┌──────────────────────────────────────────────────────────────┐
  * │  balance          = total money                              │
@@ -42,7 +42,7 @@ import org.springframework.transaction.annotation.Transactional;
  * │  When funds locked → availableBalance ↓, lockedBalance ↑    │
  * │  When txn completes → balance ↓, lockedBalance ↓            │
  * └──────────────────────────────────────────────────────────────┘
- *
+ * <p>
  * DISTRIBUTED LOCKING STRATEGY:
  * ┌──────────────────────────────────────────────────────────────┐
  * │  Redis lock key: lock_transfer:{accountNumber}               │
@@ -57,7 +57,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
-
 
 
     private final AccountRepository accountRepository;
@@ -76,23 +75,24 @@ public class AccountServiceImpl implements AccountService {
 
     /**
      * Opens a new bank account for the authenticated user.
-     *
+     * <p>
      * STEPS:
-     *  Step 1 → Verify user exists and KYC is VERIFIED (call user-service)
-     *  Step 2 → Set defaults based on account type (interest, min balance, limits)
-     *  Step 3 → Generate unique account number
-     *  Step 4 → Save to DB
-     *  Step 5 → Publish ACCOUNT_OPENED event to Kafka
-     *
+     * Step 1 → Verify user exists and KYC is VERIFIED (call user-service)
+     * Step 2 → Set defaults based on account type (interest, min balance, limits)
+     * Step 3 → Generate unique account number
+     * Step 4 → Save to DB
+     * Step 5 → Publish ACCOUNT_OPENED event to Kafka
+     * <p>
      * WHY KYC CHECK?
-     *   RBI mandates KYC before opening any bank account.
-     *   We check with user-service via Feign client.
+     * RBI mandates KYC before opening any bank account.
+     * We check with user-service via Feign client.
      */
     @Override
     @Transactional
     public OpenAccountResponse openAccount(OpenAccountRequest request) {
 
         // Step 1: KYC verification check
+
         // Need to check by calling UserService by UserServiceClient
 
         // Step 2: Resolve branch — user picked branchId from dropdown,
@@ -101,11 +101,7 @@ public class AccountServiceImpl implements AccountService {
         // TWO separate checks — different errors for different problems:
         //   Branch UUID not in DB at all → BranchNotFoundException  (404)
         //   Branch exists but inactive   → BranchNotActiveException (422)
-        Branch branch = branchRepository.findById(request.getBranchId())
-                .orElseThrow(() -> new BranchNotFoundException(
-                        "Branch not found: " + request.getBranchId()
-                                + ". Please select a branch from the available list."
-                ));
+        Branch branch = branchRepository.findById(request.getBranchId()).orElseThrow(() -> new BranchNotFoundException("Branch not found: " + request.getBranchId() + ". Please select a branch from the available list."));
 
         if (!branch.isActive()) {
             throw new BranchNotActiveException(request.getBranchId().toString());
