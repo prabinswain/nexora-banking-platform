@@ -112,15 +112,15 @@ public class ApiResponse<T> {
      */
     public static <T> ApiResponse<T> error(int status, String errorCode,
                                            String message, Object errors) {
-        return ApiResponse.<T>builder()
-                .success(false)
-                .status(status)
-                .message(message)
-                .errorCode(errorCode)
-                .errors(errors)
-                .traceId(TraceIdHolder.get())
-                .timestamp(LocalDateTime.now())
-                .build();
+            return  ApiResponse.<T>builder()
+                    .success(false)
+                    .timestamp(LocalDateTime.now())
+                    .message(message)
+                    .status(status)
+                    .errorCode(errorCode)
+                    .errors(errors)
+                    .traceId(TraceIdHolder.get())
+                    .build();
     }
 
     /**
