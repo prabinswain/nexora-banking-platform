@@ -1,22 +1,16 @@
-package com.user.UserService.entity;
+package com.auth.AuthService.entity;
 
-import com.user.UserService.enums.Gender;
-import com.user.UserService.enums.KycStatus;
-import com.user.UserService.enums.Role;
-import com.user.UserService.enums.UserStatus;
+import com.auth.AuthService.enums.Gender;
+import com.auth.AuthService.enums.KycStatus;
+import com.auth.AuthService.enums.Role;
+import com.auth.AuthService.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
-
-import org.jspecify.annotations.Nullable;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * User entity — implements UserDetails so Spring Security can use it directly.
@@ -34,17 +28,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Getter
 @Setter
 @Builder
-//@RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class User implements UserDetails {
+public class User  { // implements UserDetails
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(updatable = false, nullable = false)
-    private UUID uuid;
+    private UUID id;
 
     @Column(name = "first_name", nullable = false, length = 30)
     private String firstName;
@@ -78,7 +71,7 @@ public class User implements UserDetails {
     @Column(name = "aadhar_number", nullable = false, length = 500, unique = true) // longer due to encryption
     private String aadharNumber;
 
-    @Column(name = "kyc_status" , nullable = false , columnDefinition = "kyc_status")
+    @Column(name = "kyc_status" , nullable = false )
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private KycStatus kycStatus= KycStatus.PENDING;
@@ -94,14 +87,14 @@ public class User implements UserDetails {
     private boolean towFactorSecrete;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "user_role", nullable = false )
+    @Column(name = "user_role", nullable = false )
     @Builder.Default
     private Role role = Role.CUSTOMER ;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "user_status", nullable = false )
+    @Column(nullable = false, name = "user_status")
     @Builder.Default
-    private UserStatus getKycStatus = UserStatus.ACTIVE;
+    private UserStatus status = UserStatus.ACTIVE;
 
     @Builder.Default
     @Column(name = "failed_login_attempts", nullable = false)
@@ -136,20 +129,5 @@ public class User implements UserDetails {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
-
-    @Override
-    public @Nullable String getPassword() {
-        return "";
-    }
-
-    @Override
-    public String getUsername() {
-        return "";
     }
 }

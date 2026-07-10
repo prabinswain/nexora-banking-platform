@@ -1,4 +1,4 @@
-package com.user.UserService.enums;
+package com.auth.AuthService.enums;
 
 public enum KycStatus {
     PENDING,
